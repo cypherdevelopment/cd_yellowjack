@@ -7,7 +7,7 @@ CreateThread(function()
     while true do 
 
         -- Wait 30 Seconds --
-        Wait(10000)
+        Wait(60000)
 
         -- Get Player and Player Job Status --
         local Player = QBCore.Functions.GetPlayerData()
@@ -64,9 +64,11 @@ end)
 
 -- Bar Fridge -- 
 -- Targets -- 
+--vector4(1981.75, 3052.28, 47.22, 55.32)--
 
 -- Food Section -- 
 -- Targets --
+--vector4(1984.18, 3049.84, 47.22, 323.95)--
 
 -- UI (Invoicing) Section --
 RegisterNetEvent('cd_yellowjack:useui', function()

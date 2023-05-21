@@ -51,14 +51,14 @@ input[type=number] {
     width: 100%;
 }
 
-.close {
+.submit {
     display: flex;
     justify-content: center;
     -webkit-animation: fadein 3s;
     animation: fadein 3s;
 }
 
-#closebtn {
+#submitbtn {
     display: inline-block;
     font-size: 16px;
     background-color: #D22B2B;
@@ -68,7 +68,7 @@ input[type=number] {
     border: none;
 }
 
-#closebtn:hover {
+#submitbtn:hover {
     background-color: red;
 }
 
