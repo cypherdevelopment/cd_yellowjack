@@ -49,12 +49,12 @@ input[type=number] {
     width: 100%;
 }
 
-.close {
+.submit {
     display: flex;
     justify-content: center;
 }
 
-#closebtn {
+#submitbtn {
     display: inline-block;
     font-size: 16px;
     background-color: #D22B2B;
@@ -64,6 +64,6 @@ input[type=number] {
     border: none;
 }
 
-#closebtn:hover {
-    background-color: red;
+#submitbtn:hover {
+    background-color: green;
 }

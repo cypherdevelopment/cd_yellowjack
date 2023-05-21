@@ -16,7 +16,7 @@ $(function() {
     })
 })
 
-document.getElementById('closebtn').addEventListener('click', () => {
+document.getElementById('submitbtn').addEventListener('click', () => {
     // Hide Div // 
     $('.container').hide();
 
