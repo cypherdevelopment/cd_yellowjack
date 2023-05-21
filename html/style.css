@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Nandinagari&display=swap');
+
 .container {
     display: block;
     background-color: white;
@@ -10,11 +12,41 @@
     left: 50%;
     margin-top: -200px;
     margin-left: -400px;
+    background-image: url(./yj.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#mh {
+    font-family: 'Noto Sans Nandinagari', sans-serif;
 }
 
 .innercontainer {
     display: flex;
     justify-content: center;
+}
+
+.formdiv {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+input[type=text] {
+    display: block;
+    padding: 10px;
+    margin: 15px 0;
+    border: 2px solid rgb(107, 105, 105);
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type=number] {
+    display: block;
+    padding: 10px;
+    margin: 15px 0;
+    border: 2px solid rgb(107, 105, 105);
+    width: 100%;
 }
 
 .close {
@@ -30,4 +62,8 @@
     padding: 8px 16px;
     text-align: center;
     border: none;
+}
+
+#closebtn:hover {
+    background-color: red;
 }
