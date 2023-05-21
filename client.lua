@@ -17,7 +17,7 @@ end)
 -- Targets -- 
 
 -- Food Section -- 
--- Targets
+-- Targets --
 
 -- UI (Invoicing) Section --
 RegisterNetEvent('cd_yellowjack:useui', function()
