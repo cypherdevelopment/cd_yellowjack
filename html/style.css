@@ -18,18 +18,20 @@
 }
 
 #mh {
-    font-family: 'Noto Sans Nandinagari', sans-serif;
-}
-
-.innercontainer {
     display: flex;
     justify-content: center;
+    font-family: 'Noto Sans Nandinagari', sans-serif;
+    -webkit-animation: fadein 3s;
+    animation: fadein 3s;
 }
+
 
 .formdiv {
     display: flex;
     justify-content: center;
     box-sizing: border-box;
+    -webkit-animation: fadein 3s;
+    animation: fadein 3s;
 }
 
 input[type=text] {
@@ -52,6 +54,8 @@ input[type=number] {
 .close {
     display: flex;
     justify-content: center;
+    -webkit-animation: fadein 3s;
+    animation: fadein 3s;
 }
 
 #closebtn {
@@ -66,4 +70,14 @@ input[type=number] {
 
 #closebtn:hover {
     background-color: red;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
