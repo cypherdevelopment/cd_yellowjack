@@ -1,0 +1,33 @@
+.container {
+    display: block;
+    background-color: white;
+    height: 400px;
+    width: 800px;
+    border-radius: 10px;
+    border-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -400px;
+}
+
+.innercontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.close {
+    display: flex;
+    justify-content: center;
+}
+
+#closebtn {
+    display: inline-block;
+    font-size: 16px;
+    background-color: #D22B2B;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    border: none;
+}
