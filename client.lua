@@ -23,11 +23,7 @@ BeginTextCommandSetBlipName('Bar')
 
 -- Clock On/Off -- 
 RegisterNetEvent('cd_yellowjack:dutytoggle', function()
-    if not DutyStatus then 
         TriggerServerEvent('QBCore:ToggleDuty')
-    else 
-        TriggerServerEvent('QBCore:ToggleDuty')
-    end 
 end)
 
 target:AddBoxZone("dutytoggle", vector3(1981.39, 3051.11, 47.21), 1.5, 1.6, {
@@ -72,25 +68,41 @@ end)
 
 -- UI (Invoicing) Section --
 RegisterNetEvent('cd_yellowjack:useui', function()
-    if not uiopen then
-        SendNUIMessage({
-            type = "openui"
-        })
-        uiopen = true
-        SetNuiFocus(true, true)
-    else
-        SendNUIMessage({
-            type = "closeui"
-        })
-        uiopen = false
-    end
+        if not uiopen then
+            SendNUIMessage({
+                type = "openui"
+            })
+            uiopen = true
+            SetNuiFocus(true, true)
+        else
+            SendNUIMessage({
+                type = "closeui"
+            })
+            uiopen = false
+        end
 end)
 
-RegisterNuiCallback('cancelbtn', function(_, cb)
+RegisterNuiCallback('sbmtbtn', function(data, cb)
+    --local Player = QBCore.Functions.GetPlayerData()
+    name = data.name
+    id = data.id
+    amount = data.amount
+    desc = data.desc
+    print(name,id,amount,desc)
+    AddBill(id,amount,desc)
+    uiopen = false
     cb({})
-
     SetNuiFocus(false, false)
 end)
+
+function AddBill(id,amount,desc) 
+    TriggerServerEvent('cd_yellowjack:AddBill',id,amount,desc)
+    Citizen.Wait(50)
+end
+
+function RemoveBill(id,amount,desc) 
+    TriggerServerEvent('cd_yellowjack:RemoveBill',id,amount,desc)
+end
 
 target:AddBoxZone('ui', vector3(1982.32, 3053.33, 47.22), 1.5, 1.6, {
     name = "ui",
@@ -105,7 +117,7 @@ target:AddBoxZone('ui', vector3(1982.32, 3053.33, 47.22), 1.5, 1.6, {
             event = "cd_yellowjack:useui",
             icon = "fas fa-money-bill",
             label = "Set Invoice",
-            --job = "yellowjack",
+            job = "yellowjack",
         }
     },
     distance = 1.0,
