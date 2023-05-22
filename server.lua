@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+QBCore = exports['qb-core']:GetCoreObject()
 
 AddEventHandler('onResourceStart', function(resourceName)
     QBCore.Functions.AddJob('yellowjack', {
@@ -41,25 +41,6 @@ AddEventHandler('cd_yellowjack:RemoveBill', function(id,amount,desc)
 end)
 
 -- Webhook System -- 
-
--- Function -- 
--- function chatMessage(author, text)
---     url = "https://discord.com/api/webhooks/1109976260219768964/gvo2OWSj37v40ty21MyLyZlrL7SPk0SEe6Z6qBRLmSJ2Duc_EL7mm0scp5Bf0rxIH-e7"
-
---     local embeds = {
---         {
---             ["title"] = text,
---             ["type"] = "rich",
---             ["color"] = 14177041,
---             ["footer"] = {
---                 ["text"] = "YellowJack"
---             }
---         }
---     }
-
---     PerformHttpRequest(url, function(err, text, headers) end, 'POST', json.encode({username = author, embeds = embeds}), { ['Content-Type'] = 'application/json'})
--- end
-
 RegisterServerEvent('cd_yellowjack:SendWebHook')
 AddEventHandler('cd_yellowjack:SendWebHook', function(name, amount, desc)
     local embeds = {
@@ -75,4 +56,13 @@ AddEventHandler('cd_yellowjack:SendWebHook', function(name, amount, desc)
     }
 
     PerformHttpRequest(Config.WebhookURL, function(err, text, headers) end, 'POST', json.encode({username = "YellowJack Invoice System", embeds = embeds}), { ['Content-Type'] = 'application/json'})
+end)
+
+
+-- GiveItem System -- 
+RegisterNetEvent('cd_yellowjack:GiveItem')
+AddEventHandler('cd_yellowjack:GiveItem', function(Item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    Player.Functions.AddItem(Item, 1)
 end)

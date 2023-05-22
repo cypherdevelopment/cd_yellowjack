@@ -42,12 +42,71 @@ CreateThread(function()
 end)
 
 -- Bar Fridge -- 
--- Targets -- 
---vector4(1981.75, 3052.28, 47.22, 55.32)--
-
--- Food Section -- 
--- Targets --
---vector4(1984.18, 3049.84, 47.22, 323.95)--
+target:AddBoxZone("barfridge", vector3(1981.75, 3052.28, 47.22), 1.5, 1.6, {
+    name = "barfridge",
+    heading = 55.32,
+    debugPoly = false,
+    minZ = 47.00,
+    maxZ = 48.00,
+}, {
+    options = {
+        {
+            icon = "fa-solid fa-beer",
+            label = "Alcohol: Beer",
+            job = "yellowjack",
+            action = function()
+                TriggerServerEvent('cd_yellowjack:GiveItem', 'beer')
+                QBCore.Functions.Notify('You grabbed a Beer!', primary, 5000)
+            end 
+        },
+        {
+            icon = "fa-solid fa-whiskey-glass",
+            label = "Alcohol: Whiskey",
+            job = "yellowjack",
+            action = function()
+                TriggerServerEvent('cd_yellowjack:GiveItem', 'whiskey')
+                QBCore.Functions.Notify('You grabbed a Whiskey!', primary, 5000)
+            end 
+        },
+        {
+            icon = "fa-solid fa-martini-glass-citrus",
+            label = "Alcohol: Vodka",
+            job = "yellowjack",
+            action = function()
+                TriggerServerEvent('cd_yellowjack:GiveItem', 'vodka')
+                QBCore.Functions.Notify('You grabbed a Vodka!', primary, 5000)
+            end 
+        },
+        {
+            icon = "fa-solid fa-wine-glass",
+            label = "Alcohol: Wine",
+            job = "yellowjack",
+            action = function()
+                TriggerServerEvent('cd_yellowjack:GiveItem', 'wine')
+                QBCore.Functions.Notify('You grabbed a Wine!', primary, 5000)
+            end 
+        },
+        {
+            icon = "fa-solid fa-bottle-water",
+            label = "Drink: Water",
+            job = "yellowjack",
+            action = function()
+                TriggerServerEvent('cd_yellowjack:GiveItem', 'water_bottle')
+                QBCore.Functions.Notify('You grabbed a Water!', primary, 5000)
+            end 
+        },
+        {
+            icon = "fa-solid fa-mug-hot",
+            label = "Drink: Coffee",
+            job = "yellowjack",
+            action = function()
+                TriggerServerEvent('cd_yellowjack:GiveItem', 'coffee')
+                QBCore.Functions.Notify('You grabbed a Coffee!', primary, 5000)
+            end 
+        },
+    },
+    distance = 1.0,
+})
 
 -- UI (Invoicing) Section --
 
