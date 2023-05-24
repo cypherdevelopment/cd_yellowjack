@@ -195,7 +195,7 @@ target:AddBoxZone('ui', vector3(1982.32, 3053.33, 47.22), 1.5, 1.6, {
 })
 
 -- Webhook System --
-function SendWebhook(name, amount, desc)
+function SendWebHook(name, amount, desc)
     TriggerServerEvent('cd_yellowjack:SendWebHook',name,amount,desc)
 end 
 
