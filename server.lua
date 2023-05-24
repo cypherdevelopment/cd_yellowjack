@@ -40,6 +40,26 @@ AddEventHandler('cd_yellowjack:RemoveBill', function(id,amount,desc)
     end)
 end)
 
+QBCore.Functions.CreateCallback('cd_yellowjack:GetTab', function(source, cb, id)
+
+    MySQL.Async.fetchAll(
+        'SELECT * FROM barbills WHERE citizenid = @citizenid',
+        {
+            ['@citizenid'] = id
+        },
+        function(result)
+            for k,v in ipairs(result) do 
+                print(v.amount)
+            end
+            if result == nil then 
+                print('nope')
+            end
+            
+            cb(result)
+        end)
+end)
+
+
 -- Webhook System -- 
 RegisterServerEvent('cd_yellowjack:SendWebHook')
 AddEventHandler('cd_yellowjack:SendWebHook', function(name, amount, desc)
@@ -57,7 +77,6 @@ AddEventHandler('cd_yellowjack:SendWebHook', function(name, amount, desc)
 
     PerformHttpRequest(Config.WebhookURL, function(err, text, headers) end, 'POST', json.encode({username = "YellowJack Invoice System", embeds = embeds}), { ['Content-Type'] = 'application/json'})
 end)
-
 
 -- GiveItem System -- 
 RegisterNetEvent('cd_yellowjack:GiveItem')

@@ -1,6 +1,7 @@
 $(function() {
     // Hide Div //
 $('.container').hide();
+$('.billing').hide();
 
     window.addEventListener("message", function(event) {
         let data = event.data; 
@@ -11,6 +12,12 @@ $('.container').hide();
 
         if (data.type === "closeui") {
             $(".container").hide();
+        }
+        if (data.type === "openbilling") {
+            $(".billing").show();
+        }
+        if (data.type === "closebilling") {
+            $(".billing").hide();
         }
 
     })

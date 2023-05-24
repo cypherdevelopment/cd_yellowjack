@@ -1,14 +1,17 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local uiopen = false 
+local uiopen = false
+local billingopen = false 
 local target = exports['qb-target']
+local Location = vector3(1986.38, 3049.54, 47.22)
 
 -- Draw Blip -- 
-local Location = vector3(1986.38, 3049.54, 47.22)
-local Blip = AddBlipForCoord(Location)
-SetBlipSprite(Blip, 93)
-BeginTextCommandSetBlipName('Bar')
+function DrawBlip()
+    local Blip = AddBlipForCoord(Location)
+    SetBlipSprite(Blip, 93)
+    BeginTextCommandSetBlipName('Bar')
+end
 
--- Clock On/Off -- 
+-- Duty Station --
 target:AddBoxZone("dutytoggle", vector3(1981.39, 3051.11, 47.21), 1.5, 1.6, {
     name = "dutytoggle",
     heading = 151.81,
@@ -107,12 +110,10 @@ target:AddBoxZone("barfridge", vector3(1981.75, 3052.28, 47.22), 1.5, 1.6, {
     },
     distance = 1.0,
 })
-
 -- UI (Invoicing) Section --
-
--- UI Event --
-RegisterNetEvent('cd_yellowjack:useui', function()
-        if not uiopen then
+RegisterNetEvent('cd_yellowjack:useui')
+AddEventHandler('cd_yellowjack:useui', function()
+      if not uiopen then
             SendNUIMessage({
                 type = "openui"
             })
@@ -125,6 +126,53 @@ RegisterNetEvent('cd_yellowjack:useui', function()
             uiopen = false
         end
 end)
+
+-- UI (Invoicing) Section --
+RegisterNuiCallback('sbmtbtn', function(data, cb)
+    name = data.name
+    id = data.id
+    amount = data.amount
+    desc = data.desc
+    print(name,id,amount,desc)
+    AddBill(id,amount,desc)
+    SendWebHook(name,amount,desc)
+    uiopen = false
+    cb({})
+    SetNuiFocus(false, false)
+end)
+    
+RegisterNuiCallback('closeui', function(data, cb)
+    billingopen = false
+    cb({})
+    SetNuiFocus(false, false)
+end)
+
+function GetTab()
+    local Player = QBCore.Functions.GetPlayerData()
+    QBCore.Functions.TriggerCallback('cd_yellowjack:GetTab', function(cb)
+        if cb == nil then 
+            print('here')
+        end
+            print(cb.citizenid,cb.amount)
+    end,Player.citizenid)
+end
+
+RegisterCommand('OpenBarTab',function()
+    -- GetTab()
+    if not billingopen then
+        SendNUIMessage({
+            type = "openbilling"
+        })
+        billingopen = true
+        SetNuiFocus(true, true)
+    else
+        SendNUIMessage({
+            type = "closebilling"
+        })
+        billingopen = false
+        SetNuiFocus(false, false)
+    end
+end,false)
 
 -- UI Target --
 target:AddBoxZone('ui', vector3(1982.32, 3053.33, 47.22), 1.5, 1.6, {
@@ -145,20 +193,6 @@ target:AddBoxZone('ui', vector3(1982.32, 3053.33, 47.22), 1.5, 1.6, {
     },
     distance = 1.0,
 })
-
--- Button Callback --
-RegisterNuiCallback('sbmtbtn', function(data, cb)
-    name = data.name
-    id = data.id
-    amount = data.amount
-    desc = data.desc
-    SendWebhook(name, amount, desc)
-    print(name,id,amount,desc)
-    AddBill(id,amount,desc)
-    uiopen = false
-    cb({})
-    SetNuiFocus(false, false)
-end)
 
 -- Webhook System --
 function SendWebhook(name, amount, desc)
