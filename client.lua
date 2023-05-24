@@ -4,25 +4,6 @@ local billingopen = false
 local target = exports['qb-target']
 local Location = vector3(1986.38, 3049.54, 47.22)
 
--- Check Duty Status every 30 seconds --
-CreateThread(function()
-    while true do 
-
-        -- Wait 30 Seconds --
-        Wait(60000)
-
-        -- Get Player and Player Job Status --
-        local Player = QBCore.Functions.GetPlayerData()
-        DutyStatus = Player.job.onduty
-    end
-end)
-
-AddEventHandler('onResourceStart', function()
-
-    DrawBlip()
-
-end)
-
 -- Draw Blip -- 
 function DrawBlip()
     local Blip = AddBlipForCoord(Location)
@@ -30,13 +11,7 @@ function DrawBlip()
     BeginTextCommandSetBlipName('Bar')
 end
 
-
--- Clock On/Off -- 
-RegisterNetEvent('cd_yellowjack:dutytoggle')
-AddEventHandler('cd_yellowjack:dutytoggle', function()
-    TriggerServerEvent('QBCore:ToggleDuty')
-end)
-
+-- Duty Station --
 target:AddBoxZone("dutytoggle", vector3(1981.39, 3051.11, 47.21), 1.5, 1.6, {
     name = "dutytoggle",
     heading = 151.81,
@@ -46,8 +21,8 @@ target:AddBoxZone("dutytoggle", vector3(1981.39, 3051.11, 47.21), 1.5, 1.6, {
 }, {
     options = {
         {
-            type = "client",
-            event = "cd_yellowjack:dutytoggle",
+            type = "server",
+            event = "QBCore:ToggleDuty",
             icon = "fas fa-sign-in alt",
             label = "Clock On/Off",
             job = 'yellowjack',
@@ -70,8 +45,6 @@ CreateThread(function()
 end)
 
 -- Bar Fridge -- 
--- Targets -- 
---vector4(1981.75, 3052.28, 47.22, 55.32)--
 target:AddBoxZone("barfridge", vector3(1981.75, 3052.28, 47.22), 1.5, 1.6, {
     name = "barfridge",
     heading = 55.32,
@@ -137,15 +110,10 @@ target:AddBoxZone("barfridge", vector3(1981.75, 3052.28, 47.22), 1.5, 1.6, {
     },
     distance = 1.0,
 })
-
--- Food Section -- 
--- Targets --
---vector4(1984.18, 3049.84, 47.22, 323.95)--
-
 -- UI (Invoicing) Section --
 RegisterNetEvent('cd_yellowjack:useui')
 AddEventHandler('cd_yellowjack:useui', function()
-        if not uiopen then
+      if not uiopen then
             SendNUIMessage({
                 type = "openui"
             })
@@ -159,6 +127,7 @@ AddEventHandler('cd_yellowjack:useui', function()
         end
 end)
 
+-- UI (Invoicing) Section --
 RegisterNuiCallback('sbmtbtn', function(data, cb)
     name = data.name
     id = data.id
@@ -171,20 +140,12 @@ RegisterNuiCallback('sbmtbtn', function(data, cb)
     cb({})
     SetNuiFocus(false, false)
 end)
+    
 RegisterNuiCallback('closeui', function(data, cb)
     billingopen = false
     cb({})
     SetNuiFocus(false, false)
 end)
-
-function AddBill(id,amount,desc) 
-    TriggerServerEvent('cd_yellowjack:AddBill',id,amount,desc)
-    Citizen.Wait(50)
-end
-
-function RemoveBill(id,amount,desc) 
-    TriggerServerEvent('cd_yellowjack:RemoveBill',id,amount,desc)
-end
 
 function GetTab()
     local Player = QBCore.Functions.GetPlayerData()
@@ -195,13 +156,6 @@ function GetTab()
             print(cb.citizenid,cb.amount)
     end,Player.citizenid)
 end
-
--- Webhook System --
-function SendWebHook(name, amount, desc)
-    TriggerServerEvent('cd_yellowjack:SendWebHook',name,amount,desc)
-end 
-
-
 
 RegisterCommand('OpenBarTab',function()
     -- GetTab()
@@ -220,6 +174,7 @@ RegisterCommand('OpenBarTab',function()
     end
 end,false)
 
+-- UI Target --
 target:AddBoxZone('ui', vector3(1982.32, 3053.33, 47.22), 1.5, 1.6, {
     name = "ui",
     heading = 62.94,
@@ -238,3 +193,18 @@ target:AddBoxZone('ui', vector3(1982.32, 3053.33, 47.22), 1.5, 1.6, {
     },
     distance = 1.0,
 })
+
+-- Webhook System --
+function SendWebhook(name, amount, desc)
+    TriggerServerEvent('cd_yellowjack:SendWebHook',name,amount,desc)
+end 
+
+-- Billing System --
+function AddBill(id,amount,desc) 
+    TriggerServerEvent('cd_yellowjack:AddBill',id,amount,desc)
+    Citizen.Wait(50)
+end
+
+function RemoveBill(id,amount,desc) 
+    TriggerServerEvent('cd_yellowjack:RemoveBill',id,amount,desc)
+end

@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+QBCore = exports['qb-core']:GetCoreObject()
 
 AddEventHandler('onResourceStart', function(resourceName)
     QBCore.Functions.AddJob('yellowjack', {
@@ -40,7 +40,6 @@ AddEventHandler('cd_yellowjack:RemoveBill', function(id,amount,desc)
     end)
 end)
 
-
 QBCore.Functions.CreateCallback('cd_yellowjack:GetTab', function(source, cb, id)
 
     MySQL.Async.fetchAll(
@@ -61,6 +60,7 @@ QBCore.Functions.CreateCallback('cd_yellowjack:GetTab', function(source, cb, id)
 end)
 
 
+-- Webhook System -- 
 RegisterServerEvent('cd_yellowjack:SendWebHook')
 AddEventHandler('cd_yellowjack:SendWebHook', function(name, amount, desc)
     local embeds = {
@@ -76,4 +76,12 @@ AddEventHandler('cd_yellowjack:SendWebHook', function(name, amount, desc)
     }
 
     PerformHttpRequest(Config.WebhookURL, function(err, text, headers) end, 'POST', json.encode({username = "YellowJack Invoice System", embeds = embeds}), { ['Content-Type'] = 'application/json'})
+end)
+
+-- GiveItem System -- 
+RegisterNetEvent('cd_yellowjack:GiveItem')
+AddEventHandler('cd_yellowjack:GiveItem', function(Item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    Player.Functions.AddItem(Item, 1)
 end)
