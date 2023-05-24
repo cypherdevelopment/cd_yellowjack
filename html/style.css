@@ -72,6 +72,96 @@ input[type=number] {
     background-color: red;
 }
 
+.billing {
+    display: block;
+    background-color: white;
+    height: 400px;
+    width: 800px;
+    border-radius: 10px;
+    border-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -400px;
+  }
+  
+  #listcontainer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #customul {
+    list-style: none;
+  }
+  
+  #customul li {
+    text-align: center;
+  }
+  
+  #paybutton {
+    background-color: #444c57;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px 10px 10px;
+  }
+  
+  #infobutton {
+    background-color: #444c57;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px 10px 10px;
+  }
+  
+  #popup {
+  }
+  
+  #closebtn {
+    background-color: #f44336;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  
+  #paybutton:hover {
+    background-color: #4caf50;
+  }
+  
+  #infobutton:hover {
+    background-color: #4caf50;
+  }
+  
+  #close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 45px;
+    font-weight: 600;
+    color: red;
+    border: none;
+  }
+  
+  #close:hover {
+    color: maroon;
+  }
+
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
