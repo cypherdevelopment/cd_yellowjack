@@ -6,20 +6,27 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <script src="./billing.js" text="javascript/text" defer></script>
     <div class="container">
         <h1 id="mh">YellowJack Invoice System</h1>
 
         <div class="formdiv">
             <form>
-                <input type="text" placeholder="Customer Name">
-                <input type="number" placeholder="Customer ID">
-                <input type="number" placeholder="Invoice Amount">
-                <input type="text" placeholder="Invoice Description"> 
+                <input type="text" placeholder="Customer Name" id ="name">
+                <input type="number" placeholder="Customer ID" id = "id">
+                <input type="number" placeholder="Invoice Amount" id = "amount">
+                <input type="text" placeholder="Invoice Description" id = "desc"> 
             </form>
         </div>
 
         <div class="submit">
             <button id="submitbtn">Submit</button>
+        </div>
+    </div>
+    <div class="billing">
+        <button id="close">&times;</button>
+        <div id="listcontainer">
+            <ul id="customul"></ul>
         </div>
     </div>
     <script src="./index.js" text="text/javascript"></script>
