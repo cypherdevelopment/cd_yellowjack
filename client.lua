@@ -6,10 +6,14 @@ local Location = vector3(1986.38, 3049.54, 47.22)
 
 -- Draw Blip -- 
 function DrawBlip()
+    AddTextEntry('BLIP', 'YellowJack Bar')
     local Blip = AddBlipForCoord(Location)
     SetBlipSprite(Blip, 93)
-    BeginTextCommandSetBlipName('Bar')
+    BeginTextCommandSetBlipName('BLIP')
+    EndTextCommandSetBlipName(Blip)
 end
+
+DrawBlip();
 
 -- Duty Station --
 target:AddBoxZone("dutytoggle", vector3(1981.39, 3051.11, 47.21), 1.5, 1.6, {
