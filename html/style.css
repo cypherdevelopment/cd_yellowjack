@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Nandinagari&display=swap");
+
+.container {
+  display: block;
+  background-color: white;
+  height: 400px;
+  width: 800px;
+  border-radius: 10px;
+  border-color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -400px;
+  background-image: url(./yj.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#mh {
+  display: flex;
+  justify-content: center;
+  font-family: "Noto Sans Nandinagari", sans-serif;
+  -webkit-animation: fadein 3s;
+  animation: fadein 3s;
+}
+
+.formdiv {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  -webkit-animation: fadein 3s;
+  animation: fadein 3s;
+}
+
+input[type="text"] {
+  display: block;
+  padding: 10px;
+  margin: 15px 0;
+  border: 2px solid rgb(107, 105, 105);
+  border-radius: 5px;
+  width: 100%;
+}
+
+input[type="number"] {
+  display: block;
+  padding: 10px;
+  margin: 15px 0;
+  border: 2px solid rgb(107, 105, 105);
+  width: 100%;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  -webkit-animation: fadein 3s;
+  animation: fadein 3s;
+}
+
+#submitbtn {
+  display: inline-block;
+  font-size: 16px;
+  background-color: #d22b2b;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  border: none;
+}
+
+#submitbtn:hover {
+  background-color: red;
+}
+
+.billing {
+  display: block;
+  background-color: rgb(34, 35, 54);
+  height: 400px;
+  width: 500px;
+  border-radius: 10px;
+  border-color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -250px;
+}
+
+#listcontainer {
+  display: flex;
+  justify-content: center;
+}
+
+#customul {
+  list-style: none;
+}
+
+#customul li {
+  text-align: center;
+}
+
+#paybutton {
+  background-color: #444c57;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 10px 10px;
+}
+
+#infobutton {
+  background-color: #444c57;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 10px 10px;
+}
+
+#popup {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+#infoclose {
+  background-color: #444c57;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#paybutton:hover {
+  background-color: #4caf50;
+}
+
+#infobutton:hover {
+  background-color: #4caf50;
+}
+
+#infoclose:hover {
+  background-color: #4caf50;
+}
+
+#invoiceclose,
+#billingclose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 45px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  background-color: #2e333b;
+  border: none;
+  border-radius: 0px 10px 0px 10px;
+}
+
+#invoiceclose {
+  -webkit-animation: fadein 3s;
+  animation: fadein 3s;
+}
+
+#invoiceclose:hover,
+#billingclose:hover {
+  color: rgb(240, 4, 4);
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
