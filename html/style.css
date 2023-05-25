@@ -74,15 +74,15 @@ input[type=number] {
 
 .billing {
     display: block;
-    background-color: white;
+    background-color: rgb(34, 35, 54);
     height: 400px;
-    width: 800px;
+    width: 500px;
     border-radius: 10px;
     border-color: black;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -200px;
+    margin-top: -100px;
     margin-left: -400px;
   }
   
@@ -128,11 +128,11 @@ input[type=number] {
   #popup {
   }
   
-  #closebtn {
-    background-color: #f44336;
+  #infoclose {
+    background-color: #444c57;
     border: 1px solid darkgrey;
     border-radius: 5px;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -148,18 +148,20 @@ input[type=number] {
     background-color: #4caf50;
   }
   
-  #close {
+  #mainclose {
     position: absolute;
     top: 0;
     right: 0;
     font-size: 45px;
     font-weight: 600;
-    color: red;
+    color: rgb(0, 0, 0);
+    background-color: #2e333b;
     border: none;
+    border-radius: 0px 10px 0px 10px;
   }
   
-  #close:hover {
-    color: maroon;
+  #mainclose:hover {
+    color: rgb(240, 4, 4);
   }
 
 @keyframes fadein {

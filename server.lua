@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+QBCore = exports['qb-core']:GetCoreObject()
 
 AddEventHandler('onResourceStart', function(resourceName)
     QBCore.Functions.AddJob('yellowjack', {
@@ -27,31 +27,34 @@ AddEventHandler('cd_yellowjack:AddBill', function(id,amount,desc)
     end)
 end)
 
+RegisterServerEvent('cd_yellowjack:ChargeBill')
+AddEventHandler('cd_yellowjack:ChargeBill', function(price)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(source)
+    Player.Functions.RemoveMoney('bank',price,'Bar Bill.')
+end)
+
 RegisterServerEvent('cd_yellowjack:RemoveBill')
-AddEventHandler('cd_yellowjack:RemoveBill', function(id,amount,desc)
-    MySQL.Query(
-        'DELETE FROM `barbills` WHERE @name,@amount,@desc',
+AddEventHandler('cd_yellowjack:RemoveBill', function(citizenid,amount,desc)
+    print(citizenid,amount,desc)
+    MySQL.query(
+        'DELETE FROM barbills WHERE citizenid = @citizenid AND amount = @amount AND description = @description',
         {
-            ['@name'] = id,
+            ['@citizenid'] = citizenid,
             ['@amount'] = amount,
-            ['@desc'] = desc
+            ['@description'] = desc
         },
         function(result)
     end)
 end)
 
-
 QBCore.Functions.CreateCallback('cd_yellowjack:GetTab', function(source, cb, id)
-
-    MySQL.Async.fetchAll(
-        'SELECT * FROM barbills WHERE citizenid = @citizenid',
+    MySQL.query(
+        'SELECT citizenid,amount,description FROM barbills WHERE citizenid = @citizenid',
         {
             ['@citizenid'] = id
         },
         function(result)
-            for k,v in ipairs(result) do 
-                print(v.amount)
-            end
             if result == nil then 
                 print('nope')
             end
@@ -61,6 +64,7 @@ QBCore.Functions.CreateCallback('cd_yellowjack:GetTab', function(source, cb, id)
 end)
 
 
+-- Webhook System -- 
 RegisterServerEvent('cd_yellowjack:SendWebHook')
 AddEventHandler('cd_yellowjack:SendWebHook', function(name, amount, desc)
     local embeds = {
@@ -76,4 +80,12 @@ AddEventHandler('cd_yellowjack:SendWebHook', function(name, amount, desc)
     }
 
     PerformHttpRequest(Config.WebhookURL, function(err, text, headers) end, 'POST', json.encode({username = "YellowJack Invoice System", embeds = embeds}), { ['Content-Type'] = 'application/json'})
+end)
+
+-- GiveItem System -- 
+RegisterNetEvent('cd_yellowjack:GiveItem')
+AddEventHandler('cd_yellowjack:GiveItem', function(Item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    Player.Functions.AddItem(Item, 1)
 end)
