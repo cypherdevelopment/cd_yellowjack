@@ -179,6 +179,8 @@ nobutton.addEventListener("click", () => {
   
     document.getElementById("customul").appendChild(charge);
     document.getElementById("customul").appendChild(paybutton);
+    document.getElementById("customul").appendChild(yesbutton);
+    document.getElementById("customul").appendChild(nobutton);
     document.getElementById("customul").appendChild(infobutton);
     document.getElementById("listcontainer").appendChild(popup);
   });
