@@ -27,30 +27,34 @@ AddEventHandler('cd_yellowjack:AddBill', function(id,amount,desc)
     end)
 end)
 
+RegisterServerEvent('cd_yellowjack:ChargeBill')
+AddEventHandler('cd_yellowjack:ChargeBill', function(price)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(source)
+    Player.Functions.RemoveMoney('bank',price,'Bar Bill.')
+end)
+
 RegisterServerEvent('cd_yellowjack:RemoveBill')
-AddEventHandler('cd_yellowjack:RemoveBill', function(id,amount,desc)
-    MySQL.Query(
-        'DELETE FROM `barbills` WHERE @name,@amount,@desc',
+AddEventHandler('cd_yellowjack:RemoveBill', function(citizenid,amount,desc)
+    print(citizenid,amount,desc)
+    MySQL.query(
+        'DELETE FROM barbills WHERE citizenid = @citizenid AND amount = @amount AND description = @description',
         {
-            ['@name'] = id,
+            ['@citizenid'] = citizenid,
             ['@amount'] = amount,
-            ['@desc'] = desc
+            ['@description'] = desc
         },
         function(result)
     end)
 end)
 
 QBCore.Functions.CreateCallback('cd_yellowjack:GetTab', function(source, cb, id)
-
-    MySQL.Async.fetchAll(
-        'SELECT * FROM barbills WHERE citizenid = @citizenid',
+    MySQL.query(
+        'SELECT citizenid,amount,description FROM barbills WHERE citizenid = @citizenid',
         {
             ['@citizenid'] = id
         },
         function(result)
-            for k,v in ipairs(result) do 
-                print(v.amount)
-            end
             if result == nil then 
                 print('nope')
             end
