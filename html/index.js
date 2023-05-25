@@ -67,13 +67,44 @@ document.getElementById('submitbtn').addEventListener('click', () => {
     let paybtntext = document.createTextNode("Pay");
     paybutton.appendChild(paybtntext);
     paybutton.setAttribute("id", "paybutton");
+      
+      // Yes Button 
+     let yesbutton = document.createElement("button");
+     let yesbtntext = document.createTextNode("Yes!");
+      yesbutton.appendChild(yesbtntext);
+      yesbutton.setAttribute("id", "yesbutton");
+      
+      
+      // No Button
+      let nobutton = document.createElement("button");
+     let nobtntext = document.createTextNode("No?");
+      nobutton.appendChild(nobtntext);
+      nobutton.setAttribute("id", "nobutton");
+      
+      // Set Display to None
+      yesbutton.style.display = "none";
+       nobutton.style.display = "none";
 
     // Pay Button OnClick
     paybutton.addEventListener("click", () => {
       document.getElementById("customul").removeChild(paybutton)
       document.getElementById("customul").removeChild(infobutton)
       PayBill(item.citizenid,item.amount,item.description);
+       paybutton.style.display = "none";
+        yesbutton.style.display = "block";
+        nobutton.style.display = "block";
     });
+      
+   yesbutton.addEventListener("click", () => {
+  yesbutton.style.display = "none";
+  nobutton.style.display = "none";
+    });
+
+nobutton.addEventListener("click", () => {
+  nobutton.style.display = "none";
+  yesbutton.style.display = "none";
+    });
+
   
     // Info Button Text
     let infobutton = document.createElement("button");
@@ -148,6 +179,8 @@ document.getElementById('submitbtn').addEventListener('click', () => {
   
     document.getElementById("customul").appendChild(charge);
     document.getElementById("customul").appendChild(paybutton);
+    document.getElementById("customul").appendChild(yesbutton);
+    document.getElementById("customul").appendChild(nobutton);
     document.getElementById("customul").appendChild(infobutton);
     document.getElementById("listcontainer").appendChild(popup);
   });
