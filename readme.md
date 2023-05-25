@@ -16,3 +16,6 @@ Cypher Development
 1. Download and Extract the Resource to your resources folder.
 2. Run the SQL File in your Database
 3. Configure and Enjoy!
+
+# Support 
+Support is avaliable at discord.gg/PvAcF6kF56
