@@ -16,7 +16,7 @@ $('.billing').hide();
         }
         if (data.type === "openbilling") {
             invoices = data.bills
-            setInvoices()
+            setInvoices(invoices)
             $(".billing").show();
         }
         if (data.type === "closebilling") {
@@ -42,31 +42,9 @@ document.getElementById('submitbtn').addEventListener('click', () => {
 
 })
 
-// Billing UI //
-// Array of Invoice
-// let invoices = [
-//     {
-//       name: "Invoice 1",
-//       price: 200,
-//       item: "beer",
-//     },
-//     {
-//       name: "Invoice 2",
-//       price: 350,
-//       item: "vodka",
-//     },
-//     {
-//       name: "Invoice 3",
-//       price: 200,
-//       item: "henny",
-//     },
-//     {
-//       name: "Invoice 4",
-//       price: 400,
-//       item: "whiskey",
-//     },
-//   ];
-  
+// Billing UI //  
+  let br = document.createElement("br")
+  let br2 = document.createElement("br")
   let popupOpen = false;
   let container = document.getElementById("customul");
   
@@ -86,11 +64,10 @@ document.getElementById('submitbtn').addEventListener('click', () => {
   
     // Pay Button Text
     let paybutton = document.createElement("button");
-    let paybtntext = document.createTextNode("$"+item.amount);
+    let paybtntext = document.createTextNode("Pay");
     paybutton.appendChild(paybtntext);
     paybutton.setAttribute("id", "paybutton");
-    paybutton.style.color = "red";
-  
+
     // Pay Button OnClick
     paybutton.addEventListener("click", () => {
       document.getElementById("customul").removeChild(paybutton)
@@ -109,14 +86,31 @@ document.getElementById('submitbtn').addEventListener('click', () => {
     });
   
     // Information Pop-Up
-  
     // Main Pop-Up
     let popup = document.createElement("div");
-    let popuptext = document.createTextNode("Heading");
-    popup.appendChild(popuptext);
     popup.setAttribute("id", "popup");
     popup.hidden = true;
-  
+
+  // Pop-Up Heading
+  let infodivhead = document.createElement("h1");
+  let infodivtxt = document.createTextNode(`Invoice`);
+  infodivhead.appendChild(infodivtxt);
+
+  // Amount Information
+  let amountelement = document.createElement("h3");
+  let amounttext = document.createTextNode(`Amount: $${item.amount}`);
+  amountelement.appendChild(amounttext);
+
+  // Item Information
+  let itemelement = document.createElement("h3");
+  let itemtext = document.createTextNode(`Item: ${item.description}`);
+  itemelement.appendChild(itemtext);
+
+  // Attach it to Pop-Up
+  popup.appendChild(infodivhead);
+  popup.appendChild(amountelement);
+  popup.appendChild(itemelement);
+
     // Pop-Up Close Button
     let closeinfo = document.createElement("button");
     let btntext = document.createTextNode("Close");
@@ -138,8 +132,6 @@ document.getElementById('submitbtn').addEventListener('click', () => {
         popup.hidden = false;
         container.hidden = true;
         popupOpen = true;
-        let newtext = document.createTextNode(item);
-        popup.replaceChild(newtext,popuptext);
       } else {
         popup.hidden = true;
         container.hidden = false;
@@ -161,8 +153,13 @@ document.getElementById('submitbtn').addEventListener('click', () => {
   });
   }
   
-  // Main-UI Close Button Handler
-  document.getElementById("mainclose").addEventListener("click", () => {
+  // Close Button Handlers
+  document.getElementById("invoiceclose").addEventListener("click", () => {
+    $(".container").hide();
+    axios.post(`https://${GetParentResourceName()}/closeui`, {});
+  });
+
+  document.getElementById("billingclose").addEventListener("click", () => {
     $(".billing").hide();
     removeAllChildNodes(document.getElementById("customul"))
     axios.post(`https://${GetParentResourceName()}/closeui`, {});

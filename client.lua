@@ -148,6 +148,7 @@ RegisterNuiCallback('sbmtbtn', function(data, cb)
     SetNuiFocus(false, false)
 end)
  
+
 -- Close-UI Callback--
 RegisterNuiCallback('closeui', function(data, cb)
     billingopen = false

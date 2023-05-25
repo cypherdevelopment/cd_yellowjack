@@ -7,12 +7,13 @@
 </head>
 <body>
     <div class="container">
+        <button id="invoiceclose">&times;</button>
         <h1 id="mh">YellowJack Invoice System</h1>
 
         <div class="formdiv">
             <form>
                 <input type="text" placeholder="Customer Name" id ="name">
-                <input type="text" placeholder="Customer ID" id = "id">
+                <input type="text" placeholder="Citizen ID" id = "id">
                 <input type="number" placeholder="Invoice Amount" id = "amount">
                 <input type="text" placeholder="Invoice Description" id = "desc"> 
             </form>
@@ -22,8 +23,9 @@
             <button id="submitbtn">Submit</button>
         </div>
     </div>
+
     <div class="billing">
-        <button id="mainclose">&times;</button>
+        <button id="billingclose">&times;</button>
         <div id="listcontainer">
             <ul id="customul"></ul>
         </div>
