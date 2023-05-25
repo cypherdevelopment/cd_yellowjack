@@ -87,22 +87,24 @@ document.getElementById('submitbtn').addEventListener('click', () => {
 
     // Pay Button OnClick
     paybutton.addEventListener("click", () => {
-      document.getElementById("customul").removeChild(paybutton)
-      document.getElementById("customul").removeChild(infobutton)
-      PayBill(item.citizenid,item.amount,item.description);
-       paybutton.style.display = "none";
+        paybutton.style.display = "none";
         yesbutton.style.display = "block";
         nobutton.style.display = "block";
+        document.getElementById("customul").removeChild(infobutton)
     });
       
    yesbutton.addEventListener("click", () => {
-  yesbutton.style.display = "none";
-  nobutton.style.display = "none";
+    document.getElementById("customul").removeChild(paybutton)
+    PayBill(item.citizenid,item.amount,item.description);
+    yesbutton.style.display = "none";
+    nobutton.style.display = "none";
     });
 
 nobutton.addEventListener("click", () => {
   nobutton.style.display = "none";
   yesbutton.style.display = "none";
+  $('.billing').hide();
+  axios.post(`https://${GetParentResourceName()}/closeui`, {});
     });
 
   
