@@ -142,7 +142,7 @@ RegisterNuiCallback('sbmtbtn', function(data, cb)
     local desc = data.desc
     print(name,id,amount,desc)
     AddBill(id,amount,desc)
-    --SendWebHook(name,amount,desc)
+    SendWebHook(name,amount,desc)
     uiopen = false
     cb({})
     SetNuiFocus(false, false)
