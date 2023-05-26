@@ -85,19 +85,7 @@ input[type="number"] {
     margin-left: -250px;
   }
   
-  #paybutton {
-    background-color: #444c57;
-    border: 1px solid darkgrey;
-    border-radius: 5px;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px 10px 10px 10px;
-  }
-  
+ 
   #infobutton {
     background-color: #444c57;
     border: 1px solid darkgrey;
@@ -142,19 +130,6 @@ input[type="number"] {
   text-align: center;
 }
 
-#paybutton {
-  background-color: #444c57;
-  border: 1px solid darkgrey;
-  border-radius: 5px;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 10px 10px 10px 10px;
-}
-
 #infobutton {
   background-color: #444c57;
   border: 1px solid darkgrey;
@@ -184,10 +159,6 @@ input[type="number"] {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-}
-
-#paybutton:hover {
-  background-color: #4caf50;
 }
 
 #infobutton:hover {
@@ -220,6 +191,37 @@ input[type="number"] {
 #billingclose:hover {
   color: rgb(240, 4, 4);
 }
+
+#paybutton,
+#yesbutton,
+#nobutton {
+  background-color: #444c57;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 10px 10px;
+}
+
+#yesbutton,
+#nobutton {
+  border-radius: 15px;
+  text-align: center;
+}
+
+#paybutton:hover,
+#yesbutton:hover {
+  background-color: #4caf50;
+}
+
+#nobutton:hover {
+  background-color: red;
+}
+
 
 @keyframes fadein {
   from {
