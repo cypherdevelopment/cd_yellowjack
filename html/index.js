@@ -90,11 +90,10 @@ document.getElementById('submitbtn').addEventListener('click', () => {
         paybutton.style.display = "none";
         yesbutton.style.display = "block";
         nobutton.style.display = "block";
-        document.getElementById("customul").removeChild(infobutton)
     });
       
    yesbutton.addEventListener("click", () => {
-    document.getElementById("customul").removeChild(paybutton)
+    CheckAccount(item.citizenid);
     PayBill(item.citizenid,item.amount,item.description);
     yesbutton.style.display = "none";
     nobutton.style.display = "none";
@@ -104,7 +103,7 @@ nobutton.addEventListener("click", () => {
   nobutton.style.display = "none";
   yesbutton.style.display = "none";
   $('.billing').hide();
-  axios.post(`https://${GetParentResourceName()}/closeui`, {});
+  $('.billing').show();
     });
 
   
@@ -159,6 +158,22 @@ nobutton.addEventListener("click", () => {
       console.log(`Charging ${price} to customer!`);
       axios.post(`https://${GetParentResourceName()}/paybill`, {id,price,desc});
     }
+      
+     function CheckAccount(id) {
+         axios.post(`https://${GetParentResourceName()}/checkaccount`, {id});
+         .then((response) => {
+             console.log(response)
+             let hasenough;
+         })
+         
+       // if (hasenough === true) {
+         //     document.getElementById("customul").removeChild(paybutton)
+        //         document.getElementById("customul").removeChild(infobutton)
+         // 
+        // } else {
+            // axios.post(`https://${GetParentResourceName()}/notenough`, {id});
+         // }
+     }
   
     function ShowInfo(item) {
       if (popupOpen === false) {
