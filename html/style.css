@@ -262,3 +262,18 @@ input[type="number"] {
     opacity: 1;
   }
 }
+
+#customul::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+#customul::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: rgb(34, 35, 54);
+  border: 1px solid #cacaca;
+}
+ 
+#customul::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #ffffff;
+}
