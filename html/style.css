@@ -124,6 +124,8 @@ input[type="number"] {
 
 #customul {
   list-style: none;
+  overflow-y:auto;
+  height:380px;
 }
 
 #customul li {
