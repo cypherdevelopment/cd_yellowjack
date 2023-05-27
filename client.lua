@@ -141,7 +141,7 @@ RegisterNuiCallback('sbmtbtn', function(data, cb)
     local amount = data.amount
     local desc = data.desc
     AddBill(id,amount,desc)
-    SendWebHook(name,amount,desc)
+    --SendWebHook(name,amount,desc)
     uiopen = false
     cb({})
     SetNuiFocus(false, false)

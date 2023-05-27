@@ -236,9 +236,10 @@ input[type="number"] {
   100% { transform: translateX(0); }
 }
 
-.red-button {
-  background-color: red;
-  color: white;
+.red-button,
+.red-button:hover {
+  background-color: rgb(255, 0, 0) !important;
+  color: white !important;
 }
 
 

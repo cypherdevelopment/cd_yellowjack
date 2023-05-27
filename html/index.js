@@ -176,6 +176,7 @@ nobutton.addEventListener("click", () => {
           } else {
             yesbutton.classList.add('shake');
             yesbutton.classList.add('red-button');
+            yesbutton.classList.add('red-button:hover');
         
             // Remove the red-button class after a certain duration
             setTimeout(() => {
@@ -188,14 +189,6 @@ nobutton.addEventListener("click", () => {
           console.log(error);
       });
   }
-         
-       // if (hasenough === true) {
-         //     document.getElementById("customul").removeChild(paybutton)
-        //         document.getElementById("customul").removeChild(infobutton)
-         // 
-        // } else {
-            // axios.post(`https://${GetParentResourceName()}/notenough`, {id});
-         // }
   
     function ShowInfo(item) {
       if (popupOpen === false) {
