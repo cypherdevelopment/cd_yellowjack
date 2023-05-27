@@ -196,6 +196,15 @@ function GetTab()
     return tab
 end
 
+function GetBalance()
+    local Balance = 0 
+
+    QBCore.Functions.TriggerCallback('cd_yellowjack:GetBalance', function(cb)
+        Balance = cb
+    end)
+    return Balance
+end 
+
 
 -- UI Target --
 target:AddBoxZone('ui', vector3(1982.32, 3053.33, 47.22), 1.5, 1.6, {
