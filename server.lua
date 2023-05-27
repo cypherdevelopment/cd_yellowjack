@@ -63,6 +63,17 @@ QBCore.Functions.CreateCallback('cd_yellowjack:GetTab', function(source, cb, id)
         end)
 end)
 
+QBCore.Functions.CreateCallback('cd_yellowjack:GetBalance', function(source, cb)
+    Player = QBCore.Functions.GetPlayer(source);
+
+    if not Player then return end 
+
+    Bank = QBCore.Functions.GetMoney('bank')
+    Cash = QBCore.Functions.GetMoney('cash')
+    Balance = Bank + Cash 
+    cb(Balance)
+end)
+
 
 -- Webhook System -- 
 RegisterServerEvent('cd_yellowjack:SendWebHook')
