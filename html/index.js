@@ -88,24 +88,27 @@ document.getElementById('submitbtn').addEventListener('click', () => {
     // Pay Button OnClick
     paybutton.addEventListener("click", () => {
         paybutton.style.display = "none";
+        infobutton.style.display = "none";
         yesbutton.style.display = "block";
         nobutton.style.display = "block";
-        document.getElementById("customul").removeChild(infobutton)
+        yesbutton.style.marginLeft = 'auto';
+        yesbutton.style.marginRight = '100px';
+        nobutton.style.marginLeft = 'auto';
+        nobutton.style.marginRight = '101px';
     });
       
-   yesbutton.addEventListener("click", () => {
-    document.getElementById("customul").removeChild(paybutton)
-    PayBill(item.citizenid,item.amount,item.description);
-    yesbutton.style.display = "none";
-    nobutton.style.display = "none";
-    });
-
+  yesbutton.addEventListener('click', () => {
+    CheckAccount(item.amount,item.citizenid,item.description)
+  });
+  
 nobutton.addEventListener("click", () => {
+  paybutton.style.display = "inline-block";
+  infobutton.style.display = "inline-block";
   nobutton.style.display = "none";
   yesbutton.style.display = "none";
   $('.billing').hide();
-  axios.post(`https://${GetParentResourceName()}/closeui`, {});
-    });
+  $('.billing').show();
+});
 
   
     // Info Button Text
@@ -159,6 +162,40 @@ nobutton.addEventListener("click", () => {
       console.log(`Charging ${price} to customer!`);
       axios.post(`https://${GetParentResourceName()}/paybill`, {id,price,desc});
     }
+      
+   function CheckAccount(cost,id,desc) {
+    console.log(cost,id,desc)
+      axios.post(`https://${GetParentResourceName()}/checkaccount`, {cost})
+      .then((response) => {
+          let data = response.data;
+          let result = data[0];
+          if (result) {
+            PayBill(id, cost, desc);
+            yesbutton.style.display = 'none';
+            nobutton.style.display = 'none';
+          } else {
+            yesbutton.classList.add('shake');
+            yesbutton.classList.add('red-button');
+        
+            // Remove the red-button class after a certain duration
+            setTimeout(() => {
+              yesbutton.classList.remove('red-button');
+              yesbutton.classList.remove('shake');
+            }, 800); // Adjust the duration (in milliseconds) as needed
+          }    
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+  }
+         
+       // if (hasenough === true) {
+         //     document.getElementById("customul").removeChild(paybutton)
+        //         document.getElementById("customul").removeChild(infobutton)
+         // 
+        // } else {
+            // axios.post(`https://${GetParentResourceName()}/notenough`, {id});
+         // }
   
     function ShowInfo(item) {
       if (popupOpen === false) {
@@ -169,7 +206,6 @@ nobutton.addEventListener("click", () => {
         popup.hidden = true;
         container.hidden = false;
       }
-      console.log(`${item} was sold`);
     }
   
     // Pop-Up Close Button Handler

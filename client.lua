@@ -150,9 +150,25 @@ end)
 
 -- Close-UI Callback--
 RegisterNuiCallback('closeui', function(data, cb)
+    uiopen = false
     billingopen = false
     cb({})
     SetNuiFocus(false, false)
+end)
+
+RegisterNuiCallback('checkaccount', function(data, cb)
+    local Player = QBCore.Functions.GetPlayerData()
+    local enough
+    if Player ~= nil then
+        local money = Player.money.bank
+        if money < data.cost then 
+            enough = false
+            QBCore.Functions.Notify('You do not have enough money', 'error', 2500)
+        else
+            enough = true
+        end
+        cb({enough})
+    end
 end)
 
 RegisterNuiCallback('paybill', function(data, cb)
