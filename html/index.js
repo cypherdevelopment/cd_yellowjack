@@ -87,15 +87,18 @@ function setInvoices() {
 
     // Pay Button OnClick
     paybutton.addEventListener("click", () => {
-        paybutton.style.display = "none";
-        infobutton.style.display = "none";
+        const allPayButtons = document.querySelectorAll("#paybutton");
+        const allInfoButtons = document.querySelectorAll("#infobutton");
+        
+        allPayButtons.forEach(button => {
+            button.style.display = "none";
+        });
+        
+        allInfoButtons.forEach(button => {
+            button.style.display = "none";
+        });      
         yesbutton.style.display = "block";
         nobutton.style.display = "block";
-        yesbutton.style.marginLeft = 'auto';
-        yesbutton.style.marginRight = '100px';
-        nobutton.style.marginLeft = 'auto';
-        nobutton.style.marginRight = '101px';
-        customul.style.display = "none";
     });
       
   yesbutton.addEventListener('click', () => {
@@ -103,11 +106,18 @@ function setInvoices() {
   });
   
 nobutton.addEventListener("click", () => {
-  paybutton.style.display = "inline-block";
-  infobutton.style.display = "inline-block";
+  const allPayButtons = document.querySelectorAll("#paybutton");
+  const allInfoButtons = document.querySelectorAll("#infobutton");
+  
+  allPayButtons.forEach(button => {
+      button.style.display = "inline-block";
+  });
+  
+  allInfoButtons.forEach(button => {
+      button.style.display = "inline-block";
+  }); 
   nobutton.style.display = "none";
   yesbutton.style.display = "none";
-  customul.style.display = "block";
   $('.billing').hide();
   $('.billing').show();
 });
@@ -176,6 +186,18 @@ nobutton.addEventListener("click", () => {
           let result = data[0];
           if (result) {
             PayBill(id, cost, desc);
+            const allPayButtons = document.querySelectorAll("#paybutton");
+            const allInfoButtons = document.querySelectorAll("#infobutton");
+            
+            allPayButtons.forEach(button => {
+                button.style.display = "inline-block";
+            });
+            
+            allInfoButtons.forEach(button => {
+                button.style.display = "inline-block";
+            }); 
+            customul.removeChild(paybutton)
+            customul.removeChild(infobutton)
             yesbutton.style.display = 'none';
             nobutton.style.display = 'none';
           } else {
