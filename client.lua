@@ -141,7 +141,7 @@ RegisterNuiCallback('sbmtbtn', function(data, cb)
     local amount = data.amount
     local desc = data.desc
     AddBill(id,amount,desc)
-    SendWebHook(name,amount,desc)
+    --SendWebHook(name,amount,desc)
     uiopen = false
     cb({})
     SetNuiFocus(false, false)
@@ -150,9 +150,25 @@ end)
 
 -- Close-UI Callback--
 RegisterNuiCallback('closeui', function(data, cb)
+    uiopen = false
     billingopen = false
     cb({})
     SetNuiFocus(false, false)
+end)
+
+RegisterNuiCallback('checkaccount', function(data, cb)
+    local Player = QBCore.Functions.GetPlayerData()
+    local enough
+    if Player ~= nil then
+        local money = Player.money.bank
+        if money < data.cost then 
+            enough = false
+            QBCore.Functions.Notify('You do not have enough money', 'error', 2500)
+        else
+            enough = true
+        end
+        cb({enough})
+    end
 end)
 
 RegisterNuiCallback('paybill', function(data, cb)
@@ -179,6 +195,15 @@ function GetTab()
     end
     return tab
 end
+
+function GetBalance()
+    local Balance = 0 
+
+    QBCore.Functions.TriggerCallback('cd_yellowjack:GetBalance', function(cb)
+        Balance = cb
+    end)
+    return Balance
+end 
 
 
 -- UI Target --

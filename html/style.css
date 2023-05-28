@@ -124,6 +124,8 @@ input[type="number"] {
 
 #customul {
   list-style: none;
+  overflow-y:auto;
+  height:380px;
 }
 
 #customul li {
@@ -213,13 +215,33 @@ input[type="number"] {
   text-align: center;
 }
 
-#paybutton:hover,
+#paybutton:hover {
+  background-color: #4caf50;
+}
 #yesbutton:hover {
   background-color: #4caf50;
 }
 
 #nobutton:hover {
   background-color: red;
+}
+
+.shake {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(5px); }
+  50% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+.red-button,
+.red-button:hover {
+  background-color: rgb(255, 0, 0) !important;
+  color: white !important;
 }
 
 
@@ -239,4 +261,19 @@ input[type="number"] {
   to {
     opacity: 1;
   }
+}
+
+#customul::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+#customul::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: rgb(34, 35, 54);
+  border: 1px solid #cacaca;
+}
+ 
+#customul::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #ffffff;
 }
