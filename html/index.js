@@ -87,6 +87,7 @@ function setInvoices() {
 
     // Pay Button OnClick
     paybutton.addEventListener("click", () => {
+        customul.style.display = "none";
         paybutton.style.display = "none";
         infobutton.style.display = "none";
         yesbutton.style.display = "block";
@@ -95,7 +96,6 @@ function setInvoices() {
         yesbutton.style.marginRight = '100px';
         nobutton.style.marginLeft = 'auto';
         nobutton.style.marginRight = '101px';
-        customul.style.display = "none";
     });
       
   yesbutton.addEventListener('click', () => {
