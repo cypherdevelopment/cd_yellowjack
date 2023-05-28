@@ -103,11 +103,11 @@ function setInvoices() {
   });
   
 nobutton.addEventListener("click", () => {
+    customul.style.display = "block";
   paybutton.style.display = "inline-block";
   infobutton.style.display = "inline-block";
   nobutton.style.display = "none";
   yesbutton.style.display = "none";
-  customul.style.display = "block";
   $('.billing').hide();
   $('.billing').show();
 });
