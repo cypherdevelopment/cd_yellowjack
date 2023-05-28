@@ -95,6 +95,7 @@ function setInvoices() {
         yesbutton.style.marginRight = '100px';
         nobutton.style.marginLeft = 'auto';
         nobutton.style.marginRight = '101px';
+        customul.style.display = "none";
     });
       
   yesbutton.addEventListener('click', () => {
@@ -106,6 +107,7 @@ nobutton.addEventListener("click", () => {
   infobutton.style.display = "inline-block";
   nobutton.style.display = "none";
   yesbutton.style.display = "none";
+  customul.style.display = "block";
   $('.billing').hide();
   $('.billing').show();
 });
