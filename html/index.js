@@ -203,7 +203,6 @@ nobutton.addEventListener("click", () => {
           } else {
             yesbutton.classList.add('shake');
             yesbutton.classList.add('red-button');
-            yesbutton.classList.add('red-button:hover');
         
             // Remove the red-button class after a certain duration
             setTimeout(() => {
