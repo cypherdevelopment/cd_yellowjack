@@ -1,7 +1,7 @@
 -- Configuration - -
 Config = {
 
-    -- Item Prices --
+    -- Item Prices (Useless Right Now) --
     ItemPrices = {
         beer = 200,
         whiskey = 350, 
@@ -10,6 +10,7 @@ Config = {
         water = 100, 
         coffee = 150
     },
+
     yellowJackBlip = {
         x = 1986.38,
         y = 3049.54,
@@ -17,5 +18,5 @@ Config = {
     },
     
     -- Webhook URL -- 
-    WebhookURL = "https://discord.com/api/webhooks/1109976260219768964/gvo2OWSj37v40ty21MyLyZlrL7SPk0SEe6Z6qBRLmSJ2Duc_EL7mm0scp5Bf0rxIH-e7",
+    WebhookURL = "",
 }
