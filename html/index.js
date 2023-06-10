@@ -246,6 +246,7 @@ nobutton.addEventListener("click", () => {
 // Close Button Handlers
 document.getElementById("invoiceclose").addEventListener("click", () => {
   $(".container").hide();
+  document.getElementById('invoicetab').reset();
   axios.post(`https://${GetParentResourceName()}/closeui`, {});
 });
 
