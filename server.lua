@@ -38,7 +38,7 @@ RegisterServerEvent('cd_yellowjack:RemoveBill')
 AddEventHandler('cd_yellowjack:RemoveBill', function(citizenid,amount,desc)
     print(citizenid,amount,desc)
     MySQL.query(
-        'DELETE FROM barbills WHERE citizenid = @citizenid AND amount = @amount AND description = @description',
+        'DELETE FROM barbills WHERE citizenid = @citizenid AND amount = @amount AND description = @description LIMIT 1',
         {
             ['@citizenid'] = citizenid,
             ['@amount'] = amount,
